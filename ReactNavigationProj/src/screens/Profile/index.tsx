@@ -5,18 +5,23 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { propsStack } from "../../routes/Stack/Models";
 
 export function Profile() {
-    const params = useRoute()
+    const routes = useRoute()
     const navigation = useNavigation<propsStack>();
 
-    console.log(params.params?.name)
+    const name = routes.params?.name ?? "visitante"
+
     return (
         <View style={{ flexDirection: "column", alignItems: "center", justifyContent: "center", flex: 1 }}>
+
+            <Text style={{ fontSize: 25 }}>Bem-Vindo <Text style={{ color: "#d44", fontSize: 20 }}>{name}</Text></Text>
+
             <Text style={{ fontSize: 20 }}>Profile</Text>
+
 
             <TouchableOpacity
                 style={{ marginTop: 12, backgroundColor: "#ddd", padding: 10, borderRadius: 10 }}
                 onPress={() => navigation.navigate("Home")}>
-                <Text>Home</Text>
+                <Text>Sair</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 style={{ marginTop: 12, backgroundColor: "#ddd", padding: 10, borderRadius: 10 }}
@@ -24,12 +29,12 @@ export function Profile() {
                 <Text>Search</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
+            {/* <TouchableOpacity
                 style={{ marginTop: 12, backgroundColor: "#ddd", padding: 10, borderRadius: 10 }}
                 onPress={() => navigation.goBack()}
             >
                 <Text>Voltar</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
     );
 }

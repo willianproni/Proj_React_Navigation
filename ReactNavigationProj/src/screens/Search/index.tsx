@@ -1,12 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import React from "react";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { propsStack } from "../../routes/Stack/Models";
 
 export function Search() {
     const navigation = useNavigation<propsStack>();
+    const [name, setName] = useState('');
     return (
         <View style={{ flexDirection: "column", alignItems: "center", justifyContent: "center", flex: 1 }}>
             <Text style={{ fontSize: 20 }}>Search</Text>
@@ -20,7 +21,7 @@ export function Search() {
 
             <TouchableOpacity
                 onPress={() => navigation.navigate("Profile", {
-                    name: "Willian"
+                    name: name
                 })}
                 style={{ marginTop: 12, backgroundColor: "#ddd", padding: 10, borderRadius: 10 }}
             >

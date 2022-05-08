@@ -6,6 +6,7 @@ export type propsNavigationStack = {
         name: string;
     } 
     Search: undefined;
+    Register: undefined;
 }
 
 export type propsStack = StackNavigationProp<propsNavigationStack>

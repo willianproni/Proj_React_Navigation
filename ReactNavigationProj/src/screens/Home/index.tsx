@@ -1,27 +1,49 @@
-import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { Text, View, TouchableOpacity, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { propsStack } from "../../routes/Stack/Models";
+import { ButtonOpacidade, Container, EmailInput, Title } from "./styles";
 
 export function Home() {
     const navigation = useNavigation<propsStack>();
-    return (
-        <View style={{ flexDirection: "column", alignItems: "center", justifyContent: "center", flex: 1 }}>
-            <Text style={{ fontSize: 20 }}>Home</Text>
+    const [name, setName] = useState('');
 
-            <TouchableOpacity
-                style={{ marginTop: 12, backgroundColor: "#ddd", padding: 10, borderRadius: 10 }}
+    return (
+        <Container>
+            <Title>
+                Bem-Vindo
+            </Title>
+
+            <EmailInput
+                placeholder="Nome..."
+                value={name}
+                onChangeText={setName}
+            />
+
+            <EmailInput
+                placeholder="Senha..."
+                secureTextEntry
+            />
+
+            <View>
+                <Text>Não tem Conta?</Text>
+                <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+                    <Text>Criar</Text>
+                </TouchableOpacity>
+            </View>
+
+            <ButtonOpacidade
                 onPress={() => navigation.navigate("Profile", {
-                    name: "Willian"
+                    name: name
                 })}>
-                <Text>Profile</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={{ marginTop: 12, backgroundColor: "#ddd", padding: 10, borderRadius: 10 }}
+                <Text>Entrar no Sistema</Text>
+            </ButtonOpacidade>
+{/* 
+            <ButtonOpacidade
                 onPress={() => navigation.navigate("Search")}>
                 <Text>Search</Text>
-            </TouchableOpacity>
-        </View>
+            </ButtonOpacidade> */}
+        </Container>
     );
 }
